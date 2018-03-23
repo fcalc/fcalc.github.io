@@ -12,7 +12,7 @@ var max = Math.max;
 var random = Math.random;
 var E = Math.E;
 
-var __exch = /\((\d+(?:\.\d+)?)\s+([a-zA-Z]{3})\s+in\s+([a-zA-Z]{3})\)/;
+var __exch = /\(([^\s)]+)\s+([a-zA-Z]{3})\s+in\s+([a-zA-Z]{3})\)/;
 var __rates = {};
 
 function ___calc() {
