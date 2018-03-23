@@ -18,7 +18,13 @@ var __rates = {};
 function ___calc() {
 	let IN = document.getElementById('in');
 	let OUT = document.getElementById('out');
+	let EQ = document.getElementById('eq');
 	let expr = IN.value;
+	if (expr === '') {
+		OUT.innerHTML = '&nbsp;';
+		EQ.innerHTML = '&ne;';
+		return;
+	}
 	let found = expr.match(__exch);
 	while (found) {
 		let curr1 = found[2].toLowerCase();
@@ -52,6 +58,7 @@ function ___calc() {
 				OUT.innerHTML = +ans.toFixed(6);
 			}
 		}
+		EQ.innerHTML = '=';
 		if (IN.classList.contains('invalid')) {
 			IN.classList.remove('invalid');
 		}
