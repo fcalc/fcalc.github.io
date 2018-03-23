@@ -1,0 +1,28 @@
+html, body {
+	display: grid;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	font-family: sans-serif;
+}
+
+.fc {
+	width: 70%;
+}
+
+.fc, .fc * {
+	text-align: center;
+	font-size: 2em;
+	margin: auto;
+}
+
+.fc .in {
+	width: 100%;
+	border: 0;
+	border-bottom: 2px solid #333;
+	padding-bottom: 3px;
+}
+
+.fc .in.invalid {
+	border-color: #b33;
+}
