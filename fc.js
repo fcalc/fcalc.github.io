@@ -42,7 +42,7 @@ function ___calc() {
 		}
 		__rates[`${curr1}/${curr2}`] = rate;
 		if (rate) {
-			expr = expr.replace(__exch, rate * found[1]);
+			expr = expr.replace(__exch, '(' + (rate * found[1]) + ')');
 		} else {
 			expr = expr.replace(__exch, 'WRONGCURR');
 		}
