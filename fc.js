@@ -60,6 +60,19 @@ var __rates = {
 
 var maxId = 0;
 
+var staticURL;
+
+function ___gen_static() {
+	let i = 1;
+	let result = [];
+	for (; i <= maxId; i++) {
+		let IN = document.getElementById('in' + i);
+		let OUT = document.getElementById('out' + i);
+		result.push(IN.value + '\n' + OUT.innerHTML);
+	}
+	return btoa(result.join('\n'));
+}
+
 function ___add_input() {
 	let newId = maxId + 1;
 	let newLine = document.createElement('div');
@@ -72,6 +85,26 @@ function ___add_input() {
 	let newLineOut = document.createElement('span');
 	newLineOut.id = 'out' + newId;
 	newLineOut.classList = 'out';
+	newLine.appendChild(newLineIn);
+	newLine.appendChild(newLineOut);
+	newLineIn.focus();
+	maxId++;
+	return true;
+}
+
+function ___add_static(key, value) {
+	let newId = maxId + 1;
+	let newLine = document.createElement('div');
+	newLine.classList = 'fc fc' + newId;
+	document.body.appendChild(newLine);
+	let newLineIn = document.createElement('span');
+	newLineIn.id = 'in' + newId;
+	newLineIn.classList = 'in';
+	newLineIn.innerHTML = key;
+	let newLineOut = document.createElement('span');
+	newLineOut.id = 'out' + newId;
+	newLineOut.classList = 'out';
+	newLineOut.innerHTML = value;
 	newLine.appendChild(newLineIn);
 	newLine.appendChild(newLineOut);
 	newLineIn.focus();
@@ -137,9 +170,25 @@ function ___calc(id, event) {
 	} catch (error) {
 		OUT.classList.add('invalid');
 	}
+	
+	staticURL = ___gen_static();
+	document.getElementById('staticversion').href = '#' + staticURL;
 }
 
 function ___calc_all() {
+	let urlParts = document.URL.split('#');
+	if (urlParts.length > 1 && urlParts[1] != '') {
+		let anchor = urlParts[1];
+		staticURL = anchor;
+		document.getElementById('staticversion').href = '#' + staticURL;
+		let data = atob(anchor).split('\n');
+		while (data.length) {
+			let key = data.shift();
+			let value = data.shift();
+			___add_static(key, value);
+		}
+		return false;
+	}
 	let id = 1;
 	let finished = false;
 	while (!finished) {
@@ -150,4 +199,13 @@ function ___calc_all() {
 		}
 		id++;
 	}
+	return true;
+}
+
+function ___blink_cancopy() {
+	let cancopy = document.getElementById('cancopy');
+	cancopy.classList.remove('hidden');
+	setTimeout(function() {
+		cancopy.classList.add('hidden');
+	}, 2000);
 }

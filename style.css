@@ -17,6 +17,7 @@ html, body {
 }
 
 .fc .in {
+	display: inline-block;
 	font-family: 'Roboto Mono', sans-serif !important;
 	border: 0;
 	padding-bottom: 3px;
@@ -34,4 +35,42 @@ html, body {
 	width: 0;
 	height: 100%;
 	border-left: 3px solid #666;
+}
+
+ul.menu {
+	margin: 0;
+	position: fixed;
+	top: 3px;
+	padding-left: 48pt;
+}
+
+ul.menu li {
+	display: inline;
+}
+
+ul.menu li::before {
+	content: "[ ";
+}
+
+ul.menu li a {
+	text-decoration: none;
+}
+
+ul.menu li a:visited {
+	color: blue;
+}
+
+ul.menu li::after {
+	content: " ]";
+}
+
+.cancopy {
+	margin-left: 3.5em;
+	color: green;
+	transition: opacity 0.5s;
+	-webkit-transition: opacity 0.5s;
+}
+
+.hidden {
+	opacity: 0;
 }
