@@ -1,28 +1,37 @@
 html, body {
-	display: grid;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	font-family: sans-serif;
+	font-family: 'Roboto Mono', sans-serif !important;
+	padding-top: 0.5em;
+}
+
+.fc:not(.fc1) {
+	border-top: 1px solid #ddd;
 }
 
 .fc {
-	width: 70%;
+	padding-left: 1em;
 }
 
 .fc, .fc * {
-	text-align: center;
-	font-size: 2em;
+	font-size: 48pt;
 	margin: auto;
 }
 
 .fc .in {
-	width: 100%;
+	font-family: 'Roboto Mono', sans-serif !important;
 	border: 0;
-	border-bottom: 2px solid #333;
 	padding-bottom: 3px;
+	width: 65%;
 }
 
-.fc .in.invalid {
-	border-color: #b33;
+.invalid {
+	color: brown;
+}
+
+.vline {
+	position: fixed;
+	left: 65%;
+	top: 0;
+	width: 0;
+	height: 100%;
+	border-left: 3px solid #666;
 }

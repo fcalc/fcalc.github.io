@@ -3,14 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Fastcalc</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
 		<link href="style.css" rel="stylesheet">
 		<script src="fc.js"></script>
 	</head>
-	<body onload="___calc();">
-		<div class="fc">
-			<input id="in" class="in" autofocus onkeyup="___calc();">
-			<div id="eq" class="eq">&ne;</div>
-			<div id="out" class="out">&nbsp;</div>
-		</div>
+	<body onload="___calc_all(); maxId === 0 && ___add_input();">
+		<div class="vline"></div>
 	</body>
 </html>
