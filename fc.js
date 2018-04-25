@@ -172,7 +172,7 @@ function ___calc(id, event) {
 	}
 	
 	staticURL = ___gen_static();
-	document.getElementById('staticversion').href = '#' + staticURL;
+	document.getElementById('staticlink').value = 'https://fcalc.github.io/#' + staticURL;
 }
 
 function ___calc_all() {
@@ -208,4 +208,6 @@ function ___blink_cancopy() {
 	setTimeout(function() {
 		cancopy.classList.add('hidden');
 	}, 2000);
+	document.getElementById('staticlink').select();
+	document.execCommand('Copy');
 }

@@ -1,0 +1,29 @@
+body {
+	font-size: 1.5em;
+	font-family: sans-serif;
+}
+
+h2 {
+	font-weight: normal;
+}
+
+h2::before {
+	content: "[ ";
+}
+
+h2::after {
+	content: " ]";
+}
+
+kbd, .code {
+	background: #eee;
+	font-family: monospace;
+}
+
+kbd::before {
+	content: "<";
+}
+
+kbd::after {
+	content: ">";
+}
