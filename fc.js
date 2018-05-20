@@ -167,6 +167,7 @@ function ___calc(id, event) {
 		}
 		if (typeof ans == 'number' || ans == '&nbsp;') {
 			if (ans == Infinity) { OUT.innerHTML = 'Infinity'; } else
+			if (ans == -Infinity) { OUT.innerHTML = '-Infinity'; } else
 			if (ans != '&nbsp;') {
 				let intgr;
 				let tail;
