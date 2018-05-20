@@ -70,7 +70,7 @@ function ___gen_static() {
 		let OUT = document.getElementById('out' + i);
 		result.push(IN.value + '\n' + OUT.innerHTML);
 	}
-	return btoa(result.join('\n'));
+	return btoa(unescape(encodeURIComponent(result.join('\n'))));
 }
 
 function ___add_input() {
@@ -125,7 +125,7 @@ function ___calc(id, event) {
 	let OUT = document.getElementById('out' + id);
 	let expr = IN.value;
 	if (id > 1) {
-		expr = expr.replace(/ans/g, document.getElementById('out' + (id - 1)).innerHTML);
+		expr = expr.replace(/ans/g, document.getElementById('out' + (id - 1)).innerHTML.split(String.fromCharCode(8239)).join(''));
 	}
 	if (expr === '') {
 		OUT.innerHTML = '&nbsp;';
@@ -161,7 +161,30 @@ function ___calc(id, event) {
 		}
 		if (typeof ans == 'number' || ans == '&nbsp;') {
 			if (ans != '&nbsp;') {
-				OUT.innerHTML = +ans.toFixed(6);
+				let intgr;
+				let tail;
+				ans = ''+(+ans.toFixed(6));
+				console.log(ans);
+				if (ans.search('\\.') != -1) {
+					console.log('WTF')
+					ans = ans.split('.');
+					intgr = ans[0];
+					tail = '.' + ans[1];
+				} else {
+					intgr = ans;
+					tail = '';
+				}
+				if (intgr.length >= 5) {
+					let newAns = '';
+					intgr.split('').reverse().forEach((c, n) => {
+						newAns += c;
+						if (n % 3 == 2) {
+							newAns += ' ';
+						}
+					});
+					intgr = newAns.split('').reverse().join('').trim().split(' ').join('&#8239;');
+				}
+				OUT.innerHTML = intgr + tail; // FIXME
 			}
 		}
 		if (OUT.classList.contains('invalid')) {
@@ -181,7 +204,7 @@ function ___calc_all() {
 		let anchor = urlParts[1];
 		staticURL = anchor;
 		document.getElementById('staticversion').href = '#' + staticURL;
-		let data = atob(anchor).split('\n');
+		let data = decodeURIComponent(escape(atob(anchor))).split('\n');
 		while (data.length) {
 			let key = data.shift();
 			let value = data.shift();
