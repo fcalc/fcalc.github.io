@@ -166,13 +166,12 @@ function ___calc(id, event) {
 			ans = '&nbsp;'
 		}
 		if (typeof ans == 'number' || ans == '&nbsp;') {
+			if (ans == Infinity) { OUT.innerHTML = 'Infinity'; } else
 			if (ans != '&nbsp;') {
 				let intgr;
 				let tail;
 				ans = ''+(+ans.toFixed(6));
-				console.log(ans);
 				if (ans.search('\\.') != -1) {
-					console.log('WTF')
 					ans = ans.split('.');
 					intgr = ans[0];
 					tail = '.' + ans[1];
@@ -180,7 +179,7 @@ function ___calc(id, event) {
 					intgr = ans;
 					tail = '';
 				}
-				if (intgr.length >= 5 && intgr != 'In fin ity') {
+				if (intgr.length >= 5) {
 					let newAns = '';
 					intgr.split('').reverse().forEach((c, n) => {
 						newAns += c;
