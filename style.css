@@ -60,6 +60,7 @@ ul.menu {
 
 ul.menu li {
 	display: inline;
+	background: white;
 }
 
 ul.menu li::before {
