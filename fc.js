@@ -180,7 +180,7 @@ function ___calc(id, event) {
 					intgr = ans;
 					tail = '';
 				}
-				if (intgr.length >= 5) {
+				if (intgr.length >= 5 && intgr != 'Infinity') {
 					let newAns = '';
 					intgr.split('').reverse().forEach((c, n) => {
 						newAns += c;
