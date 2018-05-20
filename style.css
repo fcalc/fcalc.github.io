@@ -3,12 +3,26 @@ html, body {
 	padding-top: 0.5em;
 }
 
+body {
+	counter-reset: lines;
+}
+
 .fc:not(.fc1) {
 	border-top: 1px solid #ddd;
 }
 
 .fc {
-	padding-left: 1em;
+	padding-left: 2em;
+	counter-increment: lines;
+}
+
+.fc::before {
+	content: counter(lines) " ";
+	color: #ccc;
+	position: absolute;
+	left: 0.5em;
+	width: 1em;
+	text-align: right;
 }
 
 .fc, .fc * {

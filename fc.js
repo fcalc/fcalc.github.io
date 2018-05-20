@@ -127,6 +127,12 @@ function ___calc(id, event) {
 	if (id > 1) {
 		expr = expr.replace(/ans/g, document.getElementById('out' + (id - 1)).innerHTML.split(String.fromCharCode(8239)).join(''));
 	}
+	for (let i = 1; i < id; i++) {
+		expr = expr.replace((new RegExp('\\@@-' + i, 'g')), document.getElementById('in' + (id - (i))).value);
+		expr = expr.replace((new RegExp('\\@@' + i, 'g')), document.getElementById('in' + (i)).value);
+		expr = expr.replace((new RegExp('\\@-' + i, 'g')), document.getElementById('out' + (id - (i))).innerHTML.split(String.fromCharCode(8239)).join(''));
+		expr = expr.replace((new RegExp('\\@' + i, 'g')), document.getElementById('out' + (i)).innerHTML.split(String.fromCharCode(8239)).join(''));
+	}
 	if (expr === '') {
 		OUT.innerHTML = '&nbsp;';
 		return;
@@ -195,10 +201,11 @@ function ___calc(id, event) {
 	}
 	
 	staticURL = ___gen_static();
+	___calc_all(id + 1);
 	document.getElementById('staticlink').value = 'https://fcalc.github.io/#' + staticURL;
 }
 
-function ___calc_all() {
+function ___calc_all(from_) {
 	let urlParts = document.URL.split('#');
 	if (urlParts.length > 1 && urlParts[1] != '') {
 		let anchor = urlParts[1];
@@ -212,7 +219,7 @@ function ___calc_all() {
 		}
 		return false;
 	}
-	let id = 1;
+	let id = (from_ || 1);
 	let finished = false;
 	while (!finished) {
 		if (document.getElementById('in' + id) !== null) {
